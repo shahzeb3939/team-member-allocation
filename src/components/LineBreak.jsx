@@ -1,10 +1,9 @@
-export default function Footer(props) {
-    const year = props.year;
+export default function LineBreak() {
 
     return (
         <div className="container flex">
             <div className="content flex flex-column">
-                <p>Team Member Allocation App - {year}</p>
+                <hr />
             </div>
         </div>
     )
