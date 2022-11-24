@@ -19,7 +19,7 @@
       "fullName": "Sebastian Vettel",
       "designation": "Java Developer",
       "gender": "female",
-      "teamName": ""
+      "teamName": "TeamA"
     },
     {
       "id": 4,
@@ -33,7 +33,7 @@
       "fullName": "David Henry",
       "designation": "DotNet Developer",
       "gender": "male",
-      "teamName": "TeamA"
+      "teamName": ""
     },
     {
       "id": 6,

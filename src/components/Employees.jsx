@@ -1,8 +1,6 @@
 
 export default function Employees(props) {
-    const employees = props.employees;
-    const selectedTeam = props.selectedTeam;
-    const handleEmployeeCardClick = props.handleEmployeeCardClick;
+    const { employees, selectedTeam, handleEmployeeCardClick } = props;
 
     return (
         <div className="container flex">

@@ -1,17 +1,11 @@
 import "../src/css/Employees.css"
-import { lazy, Suspense, useEffect, useState } from "react"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Fallback from "./components/Fallback";
-import Navbar from "./components/Navbar";
-import SelectTeam from "./components/SelectTeam";
-import LineBreak from "./components/LineBreak";
-// import NoPageFound from "./components/NoPageFound";
-// import Employees from './components/Employees';
-const Employees = lazy(() => import('./components/Employees'))
-// import GroupedTeamMembers from "./components/GroupedTeamMembers";
-const GroupedTeamMembers = lazy(() => import('./components/GroupedTeamMembers'))
+import { useEffect, useState } from "react"
+import { Routes, Route } from "react-router-dom"
+
+import Home from "./screens/Home";
+import Team from "./screens/Team";
+import NoPageFound from "./components/NoPageFound";
+
 
 function App() {
     const [employees, setEmployees] = useState([])
@@ -57,7 +51,6 @@ function App() {
       })
       .then(res => res.json())
       .then(data => {
-          console.log('Success:', data);
           setEmployees(changedEmployees)
       })
       .catch(error => console.error('Error:', error))
@@ -73,41 +66,30 @@ function App() {
   }
 
   return (
-    <Router>
-      <Navbar />
-      <Header 
-        employees={employees}
-        selectedTeam={selectedTeam}/>
-      <LineBreak />
-      <Suspense fallback={<Fallback />} >
-        <Routes>
-          <Route path="/" element={
-            <>
-              <SelectTeam 
-                teams={teams}
-                selectedTeam={selectedTeam}
-                handleSelectChange={handleSelectChange}/>
-              <Employees 
-                employees={employees}
-                teams={teams}
-                selectedTeam={selectedTeam}
-                handleSelectChange={handleSelectChange}
-                handleEmployeeCardClick={handleEmployeeCardClick}/>
-            </>
-          } />
-          <Route path="/teams" element={
-            <GroupedTeamMembers
-              employees={employees}
-              teams={teams}
-              selectedTeam={selectedTeam}
-              handleTeamChange={handleTeamChange}/>
-          } />
-        </Routes>
-      </Suspense>
-      <Footer 
-        year={year}/>
-    </Router>
+
+    <Routes>
+      <Route path="/" element={
+        <Home
+          employees={employees}
+          selectedTeam={selectedTeam}
+          teams={teams}
+          handleSelectChange={handleSelectChange}
+          handleTeamChange={handleTeamChange}
+          handleEmployeeCardClick={handleEmployeeCardClick}
+          year={year}/>
+      }/>
+      <Route path="/teams" element={
+        <Team
+          employees={employees}
+          selectedTeam={selectedTeam}
+          teams={teams}
+          handleTeamChange={handleTeamChange}
+          year={year}/>
+      }/>
+      <Route path="*" element={<NoPageFound />}/>
+    </Routes>
   );
 }
+
 
 export default App;
