@@ -2,9 +2,10 @@ import "../src/css/Employees.css"
 import { useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 
-import Home from "./screens/Home";
-import Team from "./screens/Team";
+import HomeScreen from "./screens/HomeScreen";
+import TeamScreen from "./screens/TeamScreen";
 import NoPageFound from "./components/NoPageFound";
+import PageLayout from "./components/PageLayout";
 
 
 function App() {
@@ -65,27 +66,43 @@ function App() {
     setSelectedTeam(team)
   }
 
+  function handleTeamListClick(e) {
+    const clickedElement = e.currentTarget;
+    const cards = e.currentTarget.parentElement.getElementsByClassName("employee-cards-container");
+
+    for (let card of cards) {
+        if (card.getAttribute("name") === clickedElement.getAttribute("name")) {
+            card.classList.remove("hide")
+        } else {
+            card.classList.add("hide")
+        }
+    }
+    handleTeamChange(e.currentTarget.getAttribute("name"))
+}
+
   return (
 
     <Routes>
-      <Route path="/" element={
-        <Home
-          employees={employees}
-          selectedTeam={selectedTeam}
-          teams={teams}
-          handleSelectChange={handleSelectChange}
-          handleTeamChange={handleTeamChange}
-          handleEmployeeCardClick={handleEmployeeCardClick}
-          year={year}/>
-      }/>
-      <Route path="/teams" element={
-        <Team
-          employees={employees}
-          selectedTeam={selectedTeam}
-          teams={teams}
-          handleTeamChange={handleTeamChange}
-          year={year}/>
-      }/>
+      <Route element={<PageLayout year={year} />}>
+        <Route path="/" element={
+          <HomeScreen
+            employees={employees}
+            selectedTeam={selectedTeam}
+            teams={teams}
+            handleSelectChange={handleSelectChange}
+            handleTeamChange={handleTeamChange}
+            handleEmployeeCardClick={handleEmployeeCardClick}
+          />}
+        />
+        <Route path="/teams" element={
+          <TeamScreen
+            employees={employees}
+            selectedTeam={selectedTeam}
+            teams={teams}
+            handleTeamListClick={handleTeamListClick}
+          />}
+        />
+      </Route>
       <Route path="*" element={<NoPageFound />}/>
     </Routes>
   );

@@ -3,8 +3,8 @@ export default function Employees(props) {
     const { employees, selectedTeam, handleEmployeeCardClick } = props;
 
     return (
-        <div className="container flex">
-            <div className="content flex flex-column">
+        // <div className="container flex">
+        //     <div className="content flex flex-column">
                 <div className="employee-cards-container grid">
                     {
                         employees.map(employee => {
@@ -20,7 +20,7 @@ export default function Employees(props) {
                         })
                     }
                 </div>
-            </div>
-        </div>
+        //     </div>
+        // </div>
     )
 }

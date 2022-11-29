@@ -7,8 +7,8 @@ export default function SelectTeam(props) {
 
 
     return (
-        <div className="container flex">
-            <div className="content flex flex-column">
+        // <div className="container flex">
+        //     <div className="content flex flex-column">
                 <Select
                     size="small"
                     className="team-select" 
@@ -20,7 +20,7 @@ export default function SelectTeam(props) {
                         ))
                     }
                 </Select>
-            </div>
-        </div>
+        //     </div>
+        // </div>
     )
 }
