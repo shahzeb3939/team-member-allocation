@@ -17,14 +17,14 @@ export default function GroupedTeamMembers(props) {
                                 <div className="gap-fill"></div>
                                 <div className={team === selectedTeam ? "employee-cards-container grid block-padding" : "employee-cards-container grid block-padding hide"} name={team}>
                                     {
-                                        employees.filter(employee => employee.teamName === team).map(employee => {
+                                        employees.filter(({ teamName, }) => teamName === team).map(({id, gender, fullName, designation}) => {
                                             return (
-                                                <div id={employee.id} className="employee-card flex flex-column no-hover" key={employee.id}>
+                                                <div id={id} className="employee-card flex flex-column no-hover" key={id}>
                                                     <div className="image-container">
-                                                        <img src={(employee.gender === "male") ? require("../images/maleProfile.jpg") : require("../images/femaleProfile.jpg")} alt="profile_picture" />
+                                                        <img src={(gender === "male") ? require("../images/maleProfile.jpg") : require("../images/femaleProfile.jpg")} alt="profile_picture" />
                                                     </div>
-                                                    <p className="full-name">Full Name: {employee.fullName}</p>
-                                                    <p className="designation-title">Designation: <span className="designation">{employee.designation}</span></p>
+                                                    <p className="full-name">Full Name: {fullName}</p>
+                                                    <p className="designation-title">Designation: <span className="designation">{designation}</span></p>
                                                 </div>
                                             )
                                         })

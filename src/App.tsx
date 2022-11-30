@@ -37,8 +37,8 @@ function App() {
     }, [])
 
     function handleSelectChange(e: Event) {
-      let elementClicked: Element = e.target as Element;
-      let elementValue: string | null = elementClicked.nodeValue;
+      let elementClicked: HTMLInputElement = e.target as HTMLInputElement;
+      let elementValue: string | null = elementClicked.value;
       if (elementValue !== null) {
         setSelectedTeam(elementValue)
       }
