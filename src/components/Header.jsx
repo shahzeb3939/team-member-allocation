@@ -1,6 +1,8 @@
-export default function Header(props) {
-    const employees = props.employees;
-    const selectedTeam = props.selectedTeam;
+import { useContext } from "react";
+import DataContext from "../context/DataContext";
+
+export default function Header() {
+    const { employees, selectedTeam } = useContext(DataContext);
 
     return (
         // <div className="container flex">

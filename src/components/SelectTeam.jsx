@@ -1,9 +1,9 @@
 import { Select, MenuItem } from '@mui/material';
+import { useContext } from "react";
+import DataContext from "../context/DataContext";
 
-export default function SelectTeam(props) {
-    const teams = props.teams;
-    const selectedTeam = props.selectedTeam;
-    const handleSelectChange = props.handleSelectChange;
+export default function SelectTeam() {
+    const { teams, selectedTeam, handleSelectChange } = useContext(DataContext);
 
 
     return (

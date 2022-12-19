@@ -1,10 +1,9 @@
 import '../css/GroupedTeamMembers.css'
+import { useContext } from "react";
+import DataContext from "../context/DataContext";
 
-export default function GroupedTeamMembers(props) {
-    const employees = props.employees;
-    const teams = props.teams;
-    const selectedTeam = props.selectedTeam;
-    const handleTeamListClick = props.handleTeamListClick
+export default function GroupedTeamMembers() {
+    const { employees, teams, selectedTeam, handleTeamListClick } = useContext(DataContext);
 
     return (
         // <div className="container flex">
