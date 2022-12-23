@@ -1,11 +1,8 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
-import { useContext } from "react";
-import DataContext from "../context/DataContext";
+import Navbar from "./Navbar"
+import Footer from "./Footer"
 
 export default function PageLayout() {
-    const { year } = useContext(DataContext);
 
     return (
         <>
@@ -13,8 +10,7 @@ export default function PageLayout() {
             <div className="container flex">
                 <div className="content flex flex-column">
                     <Outlet />
-                    <Footer 
-                        year={year}/>
+                    <Footer />
                 </div>
             </div>
         </>

@@ -1,12 +1,25 @@
 import { createContext } from "react";
 import { useEffect, useState } from "react"
 
+interface AppContext {
+    employees: Employee[],
+    teams: string[],
+    selectedTeam: string,
+    handleSelectChange: any,
+    handleEmployeeCardClick: any,
+    handleTeamListClick: any
+}
 
-const DataContext = createContext<Object>({
-
+const DataContext = createContext<AppContext>({
+    employees: [],
+    teams: [],
+    selectedTeam: "",
+    handleSelectChange: null,
+    handleEmployeeCardClick: null,
+    handleTeamListClick: null
 })
 
-interface Employee {
+export interface Employee {
     id: number,
     fullName: string,
     designation: string,
@@ -19,7 +32,6 @@ export function DataProvider({ children }: { children: JSX.Element }) {
     const [employees, setEmployees] = useState<Employee[]>([])
     const [teams, setTeams] = useState<string[]>([])
     const [selectedTeam, setSelectedTeam] = useState<string>("")
-    const [year, setYear] = useState<number>(new Date().getFullYear());
 
     useEffect(() => {
         fetch("http://localhost:3000/employees")
@@ -69,11 +81,6 @@ export function DataProvider({ children }: { children: JSX.Element }) {
       .catch(error => console.error('Error:', error))
   }
 
-  useEffect(() => {
-    const currentYear = new Date().getFullYear();
-    setYear(currentYear);
-  }, [])
-
   function handleTeamChange(team: string) {
     setSelectedTeam(team)
   }
@@ -101,7 +108,6 @@ export function DataProvider({ children }: { children: JSX.Element }) {
             employees,
             teams,
             selectedTeam,
-            year,
             handleSelectChange,
             handleEmployeeCardClick,
             handleTeamListClick
